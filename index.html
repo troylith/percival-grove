@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>PERCIVAL</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Outfit:wght@500;800&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#080b10;--ink:#e8eef6;--dim:#8b97a8;--line:#1c2430;--c:#6ee7ff}
+*{box-sizing:border-box}html,body{margin:0;background:#080b10;color:var(--ink);font-family:Outfit,system-ui;min-height:100dvh}
+.hud{display:flex;gap:10px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line)}
+.brand{font-weight:800;letter-spacing:.16em;font-size:12px}
+nav{display:flex}nav button{flex:1;background:0;border:0;color:var(--dim);padding:12px;font:800 11px Outfit}
+nav button.act{color:var(--c);box-shadow:inset 0 -2px 0 var(--c)}
+main{padding:14px;max-width:800px;margin:0 auto}
+.card{background:#0d131b;border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px}
+a.btn,button.btn{display:inline-block;background:var(--c);color:#042;border:0;border-radius:10px;padding:9px 11px;font:800 12px Outfit;text-decoration:none;margin:4px 4px 0 0}
+.ghost{background:transparent!important;color:var(--c)!important;border:1px solid var(--line)!important}
+textarea,input{width:100%;background:#07090c;border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:10px;font:13px IBM Plex Mono,monospace}
+.meta{font:600 12px IBM Plex Mono,monospace;color:var(--dim)}
+</style></head>
+<body>
+<header class="hud"><div class="brand">PERCIVAL · GROVE</div></header>
+<nav>
+<button class="act" data-t="desk">DESK</button>
+<button data-t="skus">SKUS</button>
+<button data-t="leads">LEADS</button>
+</nav>
+<main id="view"></main>
+<script>
+function copy(t){navigator.clipboard.writeText(t)}
+function desk(){return `<div class="card"><h3>SELL</h3>
+<a class="btn" href="https://www.fiverr.com/orders" target="_blank">FIVERR ORDERS</a>
+<a class="btn ghost" href="http://www.fiverr.com/s/7jv32bx" target="_blank">YOUR GIG</a>
+<a class="btn ghost" href="https://contra.com" target="_blank">CONTRA</a>
+<a class="btn ghost" href="https://payhip.com/b/BxjFI" target="_blank">PAYHIP</a></div>
+<div class="card"><h3>REPLY (only if a real order ID exists)</h3>
+<textarea id="r1" rows="5">Got the order. Delivering today: 10 Meta hooks, 3 texts, checklist. Reply with product + audience in one line.</textarea>
+<button class="btn" onclick="copy(r1.value)">COPY</button></div>`}
+function skus(){return `<div class="card"><b>$39</b> hooks pack · <b>$79</b> UGC scripts · <b>$149</b> week sprint</div>`}
+function leads(){return `<div class="card">
+<a class="btn ghost" href="https://www.reddit.com/r/shopify/new" target="_blank">r/shopify</a>
+<a class="btn ghost" href="https://www.reddit.com/r/PPC/new" target="_blank">r/PPC</a>
+<a class="btn ghost" href="https://x.com/search?q=creative%20fatigue%20shopify&f=live" target="_blank">X live</a>
+<p class="meta">Do not pitch other sellers. Reply only to people asking for help. No order ID = not a client.</p></div>`}
+let tab='desk';
+function render(t){tab=t||tab;document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('act',b.dataset.t===tab));view.innerHTML=tab==='desk'?desk():tab==='skus'?skus():leads();}
+document.querySelector('nav').onclick=e=>{if(e.target.dataset.t)render(e.target.dataset.t)};
+render('desk');
+</script></body></html>
