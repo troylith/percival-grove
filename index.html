@@ -3,73 +3,49 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>PERCIVAL</title>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Outfit:wght@500;800&display=swap" rel="stylesheet"/>
+<title>PERCIVAL COMMS</title>
 <style>
-:root{--bg:#07090c;--p:#0e141c;--line:#243044;--c:#6ee7ff;--ink:#eaf2ff;--dim:#8b97a8;--ok:#5ee0a0}
-*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Outfit,system-ui;min-height:100dvh}
-.top{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#07090ce6;z-index:5}
-.mark{width:28px;height:28px;border:1px solid var(--c);border-radius:8px;display:grid;place-items:center;color:var(--c);font-weight:800}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;padding:14px}
-.w{background:var(--p);border:1px solid var(--line);border-radius:16px;padding:14px;min-height:160px}
-.w h3{margin:0 0 8px;font-size:11px;letter-spacing:.14em;color:var(--dim)}
-.pill{display:inline-block;font:600 10px IBM Plex Mono,monospace;border:1px solid var(--line);padding:5px 8px;border-radius:99px;margin:0 4px 4px 0}
-.pill.on{background:var(--ok);color:#042;border-color:var(--ok)}
-a.btn,button.btn{display:inline-block;background:var(--c);color:#042;border:0;border-radius:8px;padding:8px 10px;font:800 11px Outfit;text-decoration:none;margin:3px 3px 0 0;cursor:pointer}
-.ghost{background:transparent;color:var(--c);border:1px solid var(--line)}
-textarea,input{width:100%;background:#07090c;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:8px;font:12px/1.4 IBM Plex Mono,monospace}
-.tree{border:1px solid var(--line);border-radius:12px;padding:8px;margin-top:8px}
-.meta{font:600 11px IBM Plex Mono,monospace;color:var(--dim)}
-#clk{margin-left:auto;font:600 11px IBM Plex Mono,monospace;color:var(--dim)}
-</style>
-</head>
+body{margin:0;background:#07090c;color:#eaf2ff;font-family:system-ui;padding:12px}
+h1{font-size:14px;letter-spacing:.14em}
+.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.w{background:#0e141c;border:1px solid #243044;border-radius:14px;padding:12px}
+h3{margin:0 0 8px;font-size:11px;color:#8b97a8}
+a,button{display:inline-block;margin:3px 3px 0 0;padding:7px 9px;border-radius:8px;background:#6ee7ff;color:#042;text-decoration:none;border:0;font-weight:800;font-size:11px}
+.gho{background:transparent;color:#6ee7ff;border:1px solid #243044}
+textarea{width:100%;min-height:72px;background:#07090c;color:#eaf2ff;border:1px solid #243044;border-radius:8px;padding:8px}
+.p{font-size:11px;color:#8b97a8}
+.on{color:#5ee0a0}.wait{color:#f0c36a}
+</style></head>
 <body>
-<header class="top">
-  <div class="mark">P</div>
-  <div><b>PERCIVAL</b><div class="meta">WIDGET OS</div></div>
-  <div id="clk"></div>
-</header>
-<div class="grid">
-  <section class="w"><h3>STATUS</h3>
-    <span class="pill" id="pSys">SYS LOCAL</span>
-    <span class="pill" id="pAi">AI</span>
-    <span class="pill" id="pGr">GUMROAD</span>
-    <p class="meta">Pills need localhost. Pages stays local.</p></section>
-  <section class="w"><h3>CHANNELS</h3>
-    <a class="btn" href="https://www.fiverr.com/orders" target="_blank">ORDERS</a>
-    <a class="btn ghost" href="http://www.fiverr.com/s/7jv32bx" target="_blank">GIG</a>
-    <a class="btn ghost" href="https://contra.com" target="_blank">CONTRA</a>
-    <a class="btn ghost" href="https://payhip.com/b/BxjFI" target="_blank">PAYHIP</a></section>
-  <section class="w"><h3>COMMS</h3>
-    <textarea id="msg" rows="5">Got the order. Delivering today: 10 Meta hooks, 3 texts, checklist. Product + audience in one line if missing.</textarea>
-    <button class="btn" onclick="cp(msg.value)">COPY</button></section>
-  <section class="w"><h3>SKUS</h3>
-    <p><b>$39</b> hooks · <b>$79</b> UGC · <b>$149</b> sprint · <b>$199</b> cuts</p>
-    <button class="btn ghost" onclick="cp('AI Ad Angle Sprint $39 — 10 Meta hooks + checklist.')">COPY $39</button></section>
-  <section class="w"><h3>LEAD RADAR</h3>
-    <a class="btn ghost" href="https://www.reddit.com/r/PPC/new" target="_blank">r/PPC</a>
-    <a class="btn ghost" href="https://www.reddit.com/r/shopify/new" target="_blank">r/shopify</a>
-    <a class="btn ghost" href="https://x.com/search?q=creative%20fatigue%20shopify&f=live" target="_blank">X live</a></section>
-  <section class="w"><h3>GROVE</h3>
-    <input id="nn" placeholder="client name"/>
-    <input id="nu" placeholder="url" style="margin-top:6px"/>
-    <button class="btn" onclick="plant()">PLANT</button>
-    <div id="grove"></div></section>
-  <section class="w"><h3>LEDGER</h3>
-    <p class="meta">$0 confirmed until payout mail.</p></section>
-  <section class="w"><h3>NOTES</h3>
-    <textarea id="nt" rows="5" placeholder="order IDs"></textarea>
-    <button class="btn ghost" onclick="localStorage.setItem('pn',nt.value);toast('saved')">SAVE</button></section>
+<h1>PERCIVAL · COMMS BOARD</h1>
+<p class="p"><span class="on">AUTO: Gmail GitHub Calendar</span> · <span class="wait">SEND: you</span></p>
+<p class="p">Flow: ASK → COPY → OPEN → SEND → ORDER ID → LEDGER</p>
+<div class="g">
+<div class="w"><h3>FIVERR</h3>
+<a href="https://www.fiverr.com/inbox" target="_blank">INBOX</a>
+<a class="gho" href="https://www.fiverr.com/orders" target="_blank">ORDERS</a>
+<textarea id="a">Got the order. Delivering today: 10 Meta hooks, 3 texts, checklist.</textarea>
+<button onclick="c(a.value)">COPY</button></div>
+<div class="w"><h3>CONTRA</h3>
+<a href="https://contra.com" target="_blank">OPEN</a>
+<textarea id="b">I can start today. $39 hooks or $149 sprint. Which should I lock?</textarea>
+<button onclick="c(b.value)">COPY</button></div>
+<div class="w"><h3>LINKEDIN</h3>
+<a href="https://www.linkedin.com/messaging" target="_blank">INBOX</a>
+<textarea id="d">If first-line fatigue is the issue I can send 10 test hooks same day — $39.</textarea>
+<button onclick="c(d.value)">COPY</button></div>
+<div class="w"><h3>X</h3>
+<a href="https://x.com/messages" target="_blank">DMS</a>
+<textarea id="e">If the first 3s is the brand name that's usually the leak, not CPM.</textarea>
+<button onclick="c(e.value)">COPY</button></div>
+<div class="w"><h3>REDDIT</h3>
+<a href="https://www.reddit.com/r/PPC/new" target="_blank">r/PPC</a>
+<textarea id="f">If the first 3s is the brand name, that's usually the leak, not CPM.</textarea>
+<button onclick="c(f.value)">COPY</button></div>
+<div class="w"><h3>EMAIL</h3>
+<a href="https://mail.google.com" target="_blank">GMAIL</a>
+<textarea id="g">Same-day pack $39 or 7-day sprint $149. Product + audience in one line.</textarea>
+<button onclick="c(g.value)">COPY</button></div>
 </div>
-<script>
-function toast(t){console.log(t)}
-function cp(t){navigator.clipboard.writeText(t)}
-function tick(){clk.textContent=new Date().toLocaleTimeString()}
-setInterval(tick,1000);tick();
-nt.value=localStorage.getItem('pn')||'';
-let plants=JSON.parse(localStorage.getItem('pw')||'[]');
-function draw(){grove.innerHTML=plants.map(p=>'<div class="tree"><b>'+p.n+'</b><div class="meta">'+p.u+'</div></div>').join('')||'<p class="meta">Plant a real name.</p>'}
-function plant(){const n=nn.value.trim();if(!n)return;plants.push({n,u:nu.value.trim()||'#'});localStorage.setItem('pw',JSON.stringify(plants));draw()}
-draw();
-</script>
+<script>function c(t){navigator.clipboard.writeText(t)}</script>
 </body></html>
